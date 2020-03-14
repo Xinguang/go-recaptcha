@@ -97,11 +97,11 @@ func (r *ReCAPTCHA) fetch(token, remoteip string) (res reCAPTCHAResponse, err er
 	body := strings.NewReader(req.Form.Encode())
 	logger.Info("fetch:", body)
 	resp, err := http.Post(reCAPTCHALink, "application/x-www-form-urlencoded", body)
-	defer resp.Body.Close()
 	if err != nil {
 		logger.Error("fetch: ", err)
 		return
 	}
+	defer resp.Body.Close()
 	err = unmarshal(resp.Body, &res)
 	// debug info
 	r.showDebug(res)
