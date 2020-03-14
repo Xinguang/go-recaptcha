@@ -130,3 +130,5 @@ And to show the widget into your form you need to put this below contact form, c
 
 When the form get submit to Server, this script will send ‘g-recaptcha-response’ as a POST data. You need to verify it in order to see whether user has checked the Captcha or not.
 
+Let’s look at the [sample code](./example/README.md) to understand it better.
+**Replace `your_site_key` with your reCAPTCHA site key**

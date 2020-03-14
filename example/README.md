@@ -1,5 +1,11 @@
 # Using this Example
 
+- [Get Google reCaptcha Site Key And Secret Key](../docs/reCaptcha.md)
+- Replace all `your_site_key` in html with your reCAPTCHA site key
+- Replace all `reCaptcha Secret Key` with your reCAPTCHA secret key
+
+And run:
+
 ```sh
 go get github.com/xinguang/go-recaptcha
 cd $GOPATH/src/github.com/xinguang/go-recaptcha/example
