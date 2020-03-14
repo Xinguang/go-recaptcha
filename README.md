@@ -13,6 +13,8 @@ This package handles [reCaptcha](https://www.google.com/recaptcha) (API versions
 [![Build Status](https://travis-ci.org/Xinguang/go-recaptcha.svg)](https://travis-ci.org/Xinguang/go-recaptcha)
 [![Go Report Card](https://goreportcard.com/badge/github.com/xinguang/go-recaptcha)](https://goreportcard.com/report/github.com/xinguang/go-recaptcha)
 [![GoDoc](https://godoc.org/github.com/xinguang/go-recaptcha?status.svg)](https://godoc.org/github.com/xinguang/go-recaptcha)
+[![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/github.com/xinguang/go-recaptcha?tab=doc)
+
 [![Sourcegraph](https://sourcegraph.com/github.com/Xinguang/go-recaptcha/-/badge.svg)](https://sourcegraph.com/github.com/Xinguang/go-recaptcha?badge)
 [![Release](https://img.shields.io/github/release/Xinguang/go-recaptcha.svg?style=flat-square)](https://github.com/Xinguang/go-recaptcha/releases)
 
