@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <title>reCAPTCHA demo: Explicit render for multiple widgets</title>
+</head>
+
+<body>
+    <h3>
+        <a href="https://developers.google.com/recaptcha/docs/display#explicitly_render_the_recaptcha_widget">
+            Explicitly render the reCAPTCHA widget
+        </a>
+    </h3>
+    <form action="/signin" method="POST">
+        <div id="example3"></div>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <div id="result"></div>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var recaptchaResponse;
+        $(document).ready(function () {
+
+            $("form").submit(function (event) {
+                event.preventDefault(); 
+                $("#result").html("loading")
+                if (!recaptchaResponse) {
+                    return false;
+                }
+                let data = {
+                    "other": "post data ...",
+                    "token": recaptchaResponse,
+                };
+                let jsonData = JSON.stringify(data);
+                let url = "/signin";
+                $.ajax({
+                    method: "POST",
+                    url: url,
+                    data: jsonData,
+                    contentType: "application/json; charset=utf-8",
+                }).done(function (msg) {
+                    $("#result").html(msg.message)
+                });
+                return false;
+            });
+        });
+        var verifyCallback = function (response) {
+            console.log("g-recaptcha-response", response);
+            recaptchaResponse = response;
+
+        };
+        var onloadCallback = function () {
+            grecaptcha.render('example3', {
+                'sitekey': 'your_site_key',
+                'callback': verifyCallback,
+                'theme': 'dark'
+            });
+        };
+    </script>
+</body>
+
+</html>

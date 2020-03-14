@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <title>reCAPTCHA demo: Simple page</title>
+</head>
+
+<body>
+    <h3>
+        <a href="https://developers.google.com/recaptcha/docs/v3">
+            reCAPTCHA v3
+        </a>
+    </h3>
+    <form action="/signin" method="POST">
+        <input type="submit" value="Submit">
+    </form>
+    <div id="result"></div>
+    <script src="https://www.google.com/recaptcha/api.js?render=your_site_key"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        var fetchToken = () => new Promise((resolve, reject) =>{
+            grecaptcha.ready(function () {
+                grecaptcha.execute('your_site_key', {
+                     action: 'homepage' 
+                }).then(function (token) {
+                    console.log("g-recaptcha-response", token);
+                    resolve(token);
+                });
+            });
+        });
+        var send = ()=>{
+            fetchToken().then(token=>{
+                let data = {
+                    "other": "post data ...",
+                    "token": token,
+                };
+                let jsonData = JSON.stringify(data);
+                let url = "/signin";
+                $.ajax({
+                    method: "POST",
+                    url: url,
+                    data: jsonData
+                }).done(function (msg) {
+                    $("#result").html(msg.message)
+                });
+            });
+        }
+        $(function () {
+            $("form").submit(function (event) {
+                event.preventDefault(); 
+                $("#result").html("loading")
+                send();
+            })
+        });
+    </script>
+</body>
+
+</html>

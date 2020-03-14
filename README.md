@@ -21,15 +21,15 @@ This package handles [reCaptcha](https://www.google.com/recaptcha) (API versions
 
 * Install the package in your environment:
 ``` sh
-go get github.com/xinguang/go-reCaptcha
+go get github.com/xinguang/go-recaptcha
 ```
-To use it within your own code, import github.com/xinguang/go-reCaptcha and call:
+To use it within your own code, import github.com/xinguang/go-recaptcha and call:
 
 ```go
 package main
 
 import (
-	"github.com/xinguang/go-reCaptcha"
+	"github.com/xinguang/go-recaptcha"
 )
 func main() {
   // get your secret from https://www.google.com/recaptcha/admin
@@ -61,12 +61,12 @@ For specific options use the `VerifyWithOptions` method
 Available options:
 
 ```go
-	Threshold      float64 // ignored in v2 reCaptcha
-	Action         string  // ignored in v2 reCaptcha
-	Hostname       string
-	ApkPackageName string
-	ResponseTime   float64
-	RemoteIP       string
+  Threshold      float64 // ignored in v2 reCaptcha
+  Action         string  // ignored in v2 reCaptcha
+  Hostname       string
+  ApkPackageName string
+  ResponseTime   float64
+  RemoteIP       string
 ```
 Note that as reCaptcha v3 use score for challenge validation, if no threshold option is set the default value is 0.5
 
