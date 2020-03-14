@@ -2,13 +2,13 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/xinguang/go-recaptcha"
 	"github.com/sirupsen/logrus"
+	"github.com/xinguang/go-recaptcha"
 	"strings"
 )
 
 type JsonBody struct {
-	Token    string `json:"token" form:"token"`
+	Token             string `json:"token" form:"token"`
 	RecaptchaResponse string `json:"g-recaptcha-response" form:"g-recaptcha-response"`
 }
 
@@ -30,21 +30,21 @@ func main() {
 		}
 		token := body.Token
 		if len(token) == 0 {
-			token = body.RecaptchaResponse 
+			token = body.RecaptchaResponse
 		}
 		logrus.Info("token:", token)
-		
+
 		err = captcha.Verify(token)
 		if err != nil {
 			c.JSON(401, gin.H{
-				"error":  err,
-				"token":  token,
-				"c": c.PostForm("token"),
+				"error": err,
+				"token": token,
+				"c":     c.PostForm("token"),
 			})
 			return
 		}
 		c.JSON(200, gin.H{
-			"token":  token,
+			"token":   token,
 			"message": "valid",
 		})
 	})

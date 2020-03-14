@@ -1,16 +1,11 @@
 language: go
 
 go:
-  - 1.9.x
-  - 1.10.x
-  - 1.11.x
-  - 1.12.x
+  - 1.13.x
+  - 1.14.x
   - tip
 
-script:
-  - go fmt
-  - go vet
-  - CGO_ENABLED=0 go test
+script: CGO_ENABLED=0 go test
 
 notifications:
   email: false
