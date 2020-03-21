@@ -19,15 +19,15 @@ type ReCaptchaSuite struct{}
 
 var _ = Suite(&ReCaptchaSuite{})
 
-func (s *ReCaptchaSuite) TestNewReCAPTCHA(c *C) {
-	captcha, err := NewReCAPTCHAWithSecert("my secret")
+func (s *ReCaptchaSuite) TestNew(c *C) {
+	captcha, err := NewWithSecert("my secret")
 	c.Assert(err, IsNil)
 	c.Check(captcha.Secret, Equals, "my secret")
 
-	captcha, err = NewReCAPTCHAWithSecert("")
+	captcha, err = NewWithSecert("")
 	c.Assert(err, NotNil)
 
-	captcha, err = NewReCAPTCHA()
+	captcha, err = New()
 	c.Assert(err, NotNil)
 }
 

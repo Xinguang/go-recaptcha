@@ -54,14 +54,14 @@ type ReCAPTCHA struct {
 	Secret string
 }
 
-// NewReCAPTCHA new ReCAPTCHA instance
-func NewReCAPTCHA() (*ReCAPTCHA, error) {
-	return NewReCAPTCHAWithSecert(os.Getenv("ReCAPTCHA_SECRET"))
+// New new ReCAPTCHA instance
+func New() (*ReCAPTCHA, error) {
+	return NewWithSecert(os.Getenv("ReCAPTCHA_SECRET"))
 }
 
-// NewReCAPTCHAWithSecert new ReCAPTCHA instance
+// NewWithSecert new ReCAPTCHA instance
 // get your secret from https://www.google.com/recaptcha/admin
-func NewReCAPTCHAWithSecert(secret string) (*ReCAPTCHA, error) {
+func NewWithSecert(secret string) (*ReCAPTCHA, error) {
 	if len(secret) == 0 {
 		return nil, fmt.Errorf("recaptcha secret cannot be blank")
 	}

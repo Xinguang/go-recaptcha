@@ -28,10 +28,12 @@ This package handles [reCaptcha](https://www.google.com/recaptcha) (API versions
 ### Usage <a name="Usage" />
 
 * Install the package in your environment:
+  
 ``` sh
 go get github.com/xinguang/go-recaptcha
 ```
-To use it within your own code, import github.com/xinguang/go-recaptcha and call:
+
+* To use it within your own code, import github.com/xinguang/go-recaptcha and call:
 
 ```go
 package main
@@ -43,15 +45,16 @@ func main() {
   // get your secret from https://www.google.com/recaptcha/admin
   // Using environment variables
   // export ReCAPTCHA_SECRET="reCaptcha Secret Key"
-  recaptcha, err := NewReCAPTCHA()
+  recaptcha, err := New()
 
   // OR 
   const Secret = "reCaptcha Secret Key"
-  recaptcha, err := NewReCAPTCHAWithSecert(Secret)
+  recaptcha, err := NewWithSecert(Secret)
   // .....
 }
 ```
-Now everytime you need to verify a API client with no special options request use
+
+* Now everytime you need to verify a API client with no special options request use
 
 ```go
   // the recaptchaResponse corresponds to 
@@ -76,7 +79,9 @@ Available options:
   ResponseTime   float64
   RemoteIP       string
 ```
+
 Note that as reCaptcha v3 use score for challenge validation, if no threshold option is set the default value is 0.5
+
 
 ```go
 err := recaptcha.VerifyWithOptions(recaptchaResponse, VerifyOption{RemoteIP: "127.0.0.1"})
