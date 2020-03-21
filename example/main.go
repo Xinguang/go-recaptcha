@@ -16,7 +16,7 @@ func main() {
 	router := gin.Default()
 	router.Static("/", "./html")
 
-	captcha, err := recaptcha.NewReCAPTCHA()
+	captcha, err := recaptcha.New()
 
 	router.POST("/signin", func(c *gin.Context) {
 		var body JsonBody
