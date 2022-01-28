@@ -55,6 +55,8 @@ type ReCAPTCHA struct {
 }
 
 // New new ReCAPTCHA instance
+// Using environment variables
+// export ReCAPTCHA_SECRET="reCaptcha Secret Key"
 func New() (*ReCAPTCHA, error) {
 	return NewWithSecert(os.Getenv("ReCAPTCHA_SECRET"))
 }
@@ -68,6 +70,15 @@ func NewWithSecert(secret string) (*ReCAPTCHA, error) {
 	return &ReCAPTCHA{
 		Secret: secret,
 	}, nil
+}
+
+// Verify returns `nil` if no error and the client solved the challenge correctly
+func Verify(token string) error {
+	captcha, err := New()
+	if err != nil {
+		return err
+	}
+	return captcha.VerifyWithOptions(token, VerifyOption{})
 }
 
 // Verify returns `nil` if no error and the client solved the challenge correctly
