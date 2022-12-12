@@ -73,28 +73,28 @@ func NewWithSecert(secret string) (*ReCAPTCHA, error) {
 }
 
 // Verify returns `nil` if no error and the client solved the challenge correctly
-func Verify(token string) error {
+func Verify(token string) (error, *reCAPTCHAResponse) {
 	captcha, err := New()
 	if err != nil {
-		return err
+		return err, nil
 	}
 	return captcha.VerifyWithOptions(token, VerifyOption{})
 }
 
 // Verify returns `nil` if no error and the client solved the challenge correctly
-func (r *ReCAPTCHA) Verify(token string) error {
+func (r *ReCAPTCHA) Verify(token string) (error, *reCAPTCHAResponse) {
 	return r.VerifyWithOptions(token, VerifyOption{})
 }
 
 // VerifyWithOptions returns `nil` if no error and the client solved the challenge correctly and all options are natching
 // `Threshold` and `Action` are ignored when using V2 version
-func (r *ReCAPTCHA) VerifyWithOptions(token string, options VerifyOption) error {
+func (r *ReCAPTCHA) VerifyWithOptions(token string, options VerifyOption) (error, *reCAPTCHAResponse) {
 	res, err := r.fetch(token, options.RemoteIP)
 	if err != nil {
 		logger.Error("confirm:", err)
-		return err
+		return err, nil
 	}
-	return r.confirm(res, options)
+	return r.confirm(res, options), &res
 }
 
 func (r *ReCAPTCHA) fetch(token, remoteip string) (res reCAPTCHAResponse, err error) {
